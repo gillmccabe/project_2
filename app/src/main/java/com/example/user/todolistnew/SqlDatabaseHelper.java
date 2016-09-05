@@ -1,5 +1,6 @@
 package com.example.user.todolistnew;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -35,4 +36,13 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
                 ")";
         db.execSQL(CREATE_TODO_TABLE);
     }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion != newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
+            onCreate(db);
+        }
+    }
+
 }
