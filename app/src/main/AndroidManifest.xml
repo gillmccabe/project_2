@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EditItemActivity"
-            android:label="@string/activity_edit_item">
-
+            android:label="@string/activity_edit_item"
+            android:parentActivityName=".MainActivity">
         </activity>
 
     </application>

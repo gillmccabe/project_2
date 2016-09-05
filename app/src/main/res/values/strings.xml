@@ -10,4 +10,12 @@
     <string name="priorityLevel">Add a priority (Low, Medium, High)</string>
     <string name="dueby">Due By:</string>
     <string name="button">Add Item</string>
+    <string name="priority_prompt">Choose a priority</string>
+
+    <string-array name="priority_arrays">
+        <item>---</item>
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
 </resources>

@@ -4,6 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/etEditText"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/editText"
+        android:hint="Item name"
+        android:layout_alignRight="@+id/etPriority"
+        android:layout_alignEnd="@+id/etPriority" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -16,6 +29,18 @@
         android:layout_alignRight="@+id/datePicker"
         android:layout_alignEnd="@+id/datePicker" />
 
+    <!--<Spinner-->
+        <!--android:id="@+id/etPriority"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:entries="@array/priority_arrays"-->
+        <!--android:prompt="@string/priority_prompt"-->
+        <!--android:layout_alignRight="@+id/datePicker"-->
+        <!--android:layout_alignEnd="@+id/datePicker"-->
+        <!--android:layout_below="@+id/etEditText"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"/>-->
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,32 +50,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/etEditText"
-        android:layout_below="@+id/tvEditText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="@string/editText"
-        android:hint="Item name"
-        android:layout_alignRight="@+id/etPriority"
-        android:layout_alignEnd="@+id/etPriority" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit"
-        android:id="@+id/tvEditText"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/etEditText"
-        android:layout_alignEnd="@+id/etEditText"
-        android:textSize="15sp"/>
-    
     <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Visibility;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -115,8 +116,9 @@ public class MainActivity extends AppCompatActivity {
         }
         ToDoItem temp = new ToDoItem();
         temp.setName(editText);
-        temp.setPriority("High");
-        temp.setDuedate(new Date().getTime() + (24 * 60 * 60 * 1000));
+        temp.setPriority("Low");
+        temp.setDuedate(new Date().getTime() + 24 );
+
 
         aToDoItemAdapter.add(temp);
         etEditText.setText("");
