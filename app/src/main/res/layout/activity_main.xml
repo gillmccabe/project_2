@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
+    <Button
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:background="@null"
-        android:src="@drawable/ic_add"
+        android:text="@string/button"
         android:id="@+id/btnAddItem"
         android:onClick="onAdd"
         android:layout_alignParentBottom="true"
@@ -26,6 +25,7 @@
         android:dividerHeight="5dp"
         android:divider="@android:color/transparent"
         android:layout_above="@+id/btnAddItem" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

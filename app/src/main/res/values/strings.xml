@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">ToDo List</string>
+    <string name="activity_edit_item">Edit ToDo Item</string>
     <string name="add">ADD</string>
     <string name="add_item">Add a new item...</string>
+    <string name="edit">Edit Name, Priority and/or Due Date:</string>
+    <string name="save">Save</string>
+    <string name="editText" />
+    <string name="priority">Add a priority (Low, Medium, High)</string>
+    <string name="priorityLevel">Add a priority (Low, Medium, High)</string>
+    <string name="dueby">Due By:</string>
+    <string name="button">Add Item</string>
 </resources>

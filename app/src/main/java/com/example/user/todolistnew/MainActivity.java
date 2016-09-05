@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,5 +63,65 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            int pos = data.getExtras().getInt(EditItemActivity.EXTRA_POSITION);
+            ToDoItem item = new ToDoItem();
+            item.setName(data.getExtras().getString(EditItemActivity.EXTRA_NAME));
+            item.setId(Integer.parseInt(data.getExtras().getString(EditItemActivity.EXTRA_ID)));
+            item.setPriority(data.getExtras().getString(EditItemActivity.EXTRA_PRI));
+            item.setDuedate(data.getExtras().getLong(EditItemActivity.EXTRA_DUE_DATE));
+            todoItems.set(pos,item);
+            aToDoItemAdapter.notifyDataSetChanged();
+            updateItem(item);
+        }
+    }
+
+    private void updateItem(ToDoItem item) {
+        sqlDatabase.updateItem(item);
+    }
+
+
+    public void populateArrayItems(){
+        todoItems = new ArrayList<ToDoItem>();
+        readItems();
+        aToDoItemAdapter = new ToDoListAdapter(this,R.layout.todo_list_item,R.id.textViewName,todoItems);
+    }
+
+    private void readItems(){
+
+        if(sqlDatabase.getAllItems() != null){
+            List<ToDoItem> dbItems = sqlDatabase.getAllItems();
+            todoItems.clear();
+            todoItems.addAll(dbItems);
+        }
+    }
+
+    private void writeItems(ToDoItem temp){
+
+        long id = sqlDatabase.addDb(temp);
+        temp.setId(id);
+        aToDoItemAdapter.notifyDataSetChanged();
+    }
+
+
+    public void onAdd(View view) {
+        String editText = etEditText.getText().toString();
+        if(editText == null || editText.isEmpty()){
+            Toast.makeText(this, "Text field is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        ToDoItem temp = new ToDoItem();
+        temp.setName(editText);
+        temp.setPriority("High");
+        temp.setDuedate(new Date().getTime() + (24 * 60 * 60 * 1000));
+
+        aToDoItemAdapter.add(temp);
+        etEditText.setText("");
+        writeItems(temp);
+    }
+
 
 }

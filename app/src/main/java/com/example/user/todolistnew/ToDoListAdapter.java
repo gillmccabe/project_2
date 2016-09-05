@@ -25,12 +25,11 @@ public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
 
     List<ToDoItem> items;
 
-    public TodoListAdapter(Context context, int resource, int textViewResourceId, List<ToDoItem> objects) {
+    public ToDoListAdapter(Context context, int resource, int textViewResourceId, List<ToDoItem> objects) {
         super(context, resource, textViewResourceId, objects);
         this.context = context;
         this.items = objects;
     }
-
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -75,6 +74,4 @@ public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
         TextView duedate;
 
     }
-
-
 }
