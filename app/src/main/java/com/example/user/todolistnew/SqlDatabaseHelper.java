@@ -42,7 +42,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
                 KEY_TODO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + // Define a primary key
                 KEY_TODO_ITEM_NAME + " TEXT," +
                 KEY_TODO_ITEM_PRIORITY + " TEXT," +
-                KEY_TODO_ITEM_DUEBY + " DATE" +
+                KEY_TODO_ITEM_DUEBY + " TEXT" +
                 ")";
         db.execSQL(CREATE_TODO_TABLE);
     }

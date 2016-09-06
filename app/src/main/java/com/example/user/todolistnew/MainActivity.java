@@ -1,22 +1,15 @@
 package com.example.user.todolistnew;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Visibility;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Context ctx = getApplicationContext();
         sqlDatabase = new SqlDatabaseHelper(this);
         populateArrayItems();
         lvItems = (ListView) findViewById(R.id.lvItems);
@@ -127,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public void populateArrayItems(){
         todoItems = new ArrayList<ToDoItem>();
         readItems();
-        myToDoItemAdapter = new ToDoListAdapter(this,R.layout.todo_list_item,R.id.textViewName,todoItems);
+        myToDoItemAdapter = new ToDoListAdapter(this,R.layout.item,R.id.textViewName,todoItems);
     }
 
 

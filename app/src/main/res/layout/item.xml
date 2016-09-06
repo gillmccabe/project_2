@@ -10,8 +10,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textViewName"
+        android:text=""
+        android:id="@+id/itemName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -20,8 +20,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textViewPriority"
+        android:text=""
+        android:id="@+id/itemPriority"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -30,8 +30,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textViewDueDate"
+        android:text=" --- "
+        android:id="@+id/itemDueDate"
         android:layout_alignTop="@+id/textView"
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView" />
@@ -41,8 +41,9 @@
         android:layout_height="wrap_content"
         android:text="@string/dueby"
         android:id="@+id/textView"
-        android:layout_below="@+id/textViewName"
+        android:layout_below="@+id/itemName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:paddingRight="5dp"/>
+
 </RelativeLayout>

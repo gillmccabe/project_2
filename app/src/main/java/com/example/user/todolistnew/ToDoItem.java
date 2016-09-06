@@ -8,17 +8,17 @@ public class ToDoItem {
     private long id;  // 'long' value type used when longer than int is needed
     private String name;
     private String priority;
-    private long duedate;
+    private String duedate;
 
 
-//////    EMPTY CONTRUSTOR
+//////    EMPTY CONTRUCTOR
     public ToDoItem() {
 
     }
 //
 //
 //    CONSTRUCTOR
-    public ToDoItem(long id, String name, String priority, long duedate) {
+    public ToDoItem(long id, String name, String priority, String duedate) {
         this.id = id;
         this.name = name;
         this.priority = priority;
@@ -51,11 +51,11 @@ public class ToDoItem {
         this.priority = priority;
     }
 
-    public long getDuedate() {
+    public String getDuedate() {
         return duedate;
     }
 
-    public void setDuedate(long duedate) {
+    public void setDuedate(String duedate) {
         this.duedate = duedate;
     }
 

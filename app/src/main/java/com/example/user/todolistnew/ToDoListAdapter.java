@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,63 +18,26 @@ import java.util.List;
  */
 public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
 
-    Context context;
-
-    @Override
-    public int getCount() {
-        return items.size();
-    }
-
-    List<ToDoItem> items;
-
-    public ToDoListAdapter(Context context, int resource, int textViewResourceId, List<ToDoItem> objects) {
-        super(context, resource, textViewResourceId, objects);
-        this.context = context;
-        this.items = objects;
+    public ToDoListAdapter(Context context, ArrayList<ToDoItem> tasks){
+        super(context, 0, tasks);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
-        ToDoItemHolder holder = null;
+    public View getView(int position, View convertView, ViewGroup parent){
+        ToDoItem item = getItem(position);
 
-        if(row == null)
-        {
-            LayoutInflater inflater = ( (Activity) context ).getLayoutInflater();
-            row = inflater.inflate(R.layout.todo_list_item, null, false);
-
-            holder = new ToDoItemHolder();
-            holder.name = (TextView)row.findViewById(R.id.textViewName);
-            holder.priority = (TextView)row.findViewById(R.id.textViewPriority);
-            holder.duedate = (TextView)row.findViewById(R.id.textViewDueDate);
-
-
-        }
-        else
-        {
-            holder = (ToDoItemHolder)row.getTag();
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
         }
 
-        ToDoItem item = items.get(position);
-        holder.name.setText(item.getName());
-        holder.priority.setText(item.getPriority());
-        holder.duedate = (TextView)row.findViewById(R.id.textViewDueDate);
+        TextView itemName = (TextView)convertView.findViewById(R.id.itemName);
+        TextView itemPriority = (TextView)convertView.findViewById(R.id.itemPriority);
+        TextView itemDueDate = (TextView)convertView.findViewById(R.id.itemDueDate);
 
-        Long time = item.getDuedate();
-        int flags = DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_MONTH | DateUtils.FORMAT_SHOW_YEAR;
-        holder.duedate.setText(DateUtils.formatDateTime(context, time, flags));
-        row.setTag(holder);
-        return row;
-    }
+        itemName.setText(item.getName());
+        itemPriority.setText(item.getPriority());
+        itemDueDate.setText(item.getDuedate());
 
-
-
-
-    static class ToDoItemHolder
-    {
-        TextView name;
-        TextView priority;
-        TextView duedate;
-
+        return convertView;
     }
 }
