@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.transition.Visibility;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         sqlDatabase = new SqlDatabaseHelper(this.getApplicationContext());
         populateArrayItems();
         lvItems = (ListView) findViewById(R.id.lvItems);
@@ -46,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -111,19 +118,21 @@ public class MainActivity extends AppCompatActivity {
     public void onAdd(View view) {
         String editText = etEditText.getText().toString();
         if(editText == null || editText.isEmpty()){
-            Toast.makeText(this, "Text field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You must enter an item", Toast.LENGTH_SHORT).show();
             return;
         }
         ToDoItem temp = new ToDoItem();
         temp.setName(editText);
-        temp.setPriority("Low");
-        temp.setDuedate(new Date().getTime() + 24 );
+        temp.setPriority("Low"); // can this be made hidden??
+        temp.setDuedate(new Date().getTime() + 24);
 
 
         aToDoItemAdapter.add(temp);
         etEditText.setText("");
         writeItems(temp);
     }
+
+
 
 
 }

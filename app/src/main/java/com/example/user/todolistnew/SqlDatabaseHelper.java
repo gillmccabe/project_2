@@ -13,6 +13,11 @@ import java.util.List;
 /**
  * Created by user on 05/09/2016.
  */
+
+// This Class handles of all the SQL statements and sets up the CRUD functionality of the database
+// These methods can then be called in MainActivity
+    
+
 public class SqlDatabaseHelper extends SQLiteOpenHelper {
 
 
@@ -29,19 +34,20 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
+    // Specifies what values every item in the database should have
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TODO_TABLE = "CREATE TABLE " + TABLE_TODO +
-                " (" +
+        String CREATE_TODO_TABLE =
+                "CREATE TABLE " + TABLE_TODO + " (" +
                 KEY_TODO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + // Define a primary key
                 KEY_TODO_ITEM_NAME + " TEXT," +
                 KEY_TODO_ITEM_PRIORITY + " TEXT," +
-                KEY_TODO_ITEM_DUEBY + " DATETIME" +
+                KEY_TODO_ITEM_DUEBY + " DATE" +
                 ")";
         db.execSQL(CREATE_TODO_TABLE);
     }
 
+    // This checks if database exists and drops previous versions of table to avoid duplicates
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion != newVersion) {
@@ -50,6 +56,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Add a new item item to the database
     public long addDb(ToDoItem toDoItem){
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_TODO_ITEM_NAME,toDoItem.getName());
@@ -62,6 +69,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    // Permanently delete item from database
     public boolean deleteDb(String name){
         boolean result = false;
         String query = "Select * FROM " + TABLE_TODO + " where " + KEY_TODO_ITEM_NAME + " LIKE '" + name + "'";
@@ -82,6 +90,8 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+
+    // Get all items from database
     public List<ToDoItem> getAllItems() {
         List<ToDoItem> itemList = new ArrayList<ToDoItem>();
         String selectQuery = "SELECT * FROM " + TABLE_TODO;
@@ -105,6 +115,8 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         return itemList;
     }
 
+
+    // Allows you to update item currently in database
     public void updateItem(ToDoItem toDoItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         String strFilter = KEY_TODO_ID+"=" + ((Long)toDoItem.getId()).intValue();

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -56,14 +57,15 @@ public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
         ToDoItem item = items.get(position);
         holder.name.setText(item.getName());
         holder.priority.setText(item.getPriority());
+        holder.duedate = (TextView)row.findViewById(R.id.textViewDueDate);
 
         Long time = item.getDuedate();
-        int flags = DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_MONTH |
-                DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_YEAR;
+        int flags = DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_MONTH | DateUtils.FORMAT_SHOW_YEAR;
         holder.duedate.setText(DateUtils.formatDateTime(context, time, flags));
         row.setTag(holder);
         return row;
     }
+
 
 
 
