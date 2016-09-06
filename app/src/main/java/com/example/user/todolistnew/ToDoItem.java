@@ -5,16 +5,17 @@ package com.example.user.todolistnew;
  */
 public class ToDoItem {
 
-    private long id;
+    private long id;  // 'long' value type used when longer than int is needed
     private String name;
     private String priority;
     private long duedate;
-    private long createdDate;
+
 
 
     public long getId() {
         return id;
     }
+
 
     public void setId(long id) {
         this.id = id;
@@ -44,12 +45,5 @@ public class ToDoItem {
         this.duedate = duedate;
     }
 
-    public long getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(long createdDate) {
-        this.createdDate = createdDate;
-    }
 
 }

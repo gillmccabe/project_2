@@ -16,7 +16,7 @@ import java.util.List;
 
 // This Class handles of all the SQL statements and sets up the CRUD functionality of the database
 // These methods can then be called in MainActivity
-    
+
 
 public class SqlDatabaseHelper extends SQLiteOpenHelper {
 
