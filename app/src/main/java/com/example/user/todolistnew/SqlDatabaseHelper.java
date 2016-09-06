@@ -47,7 +47,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TODO_TABLE);
     }
 
-    // This checks if database exists and drops previous versions of table to avoid duplicates
+    // CHECKS IF DB EXISTS AND DROPS TABLE IF NECESSARY
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion != newVersion) {
@@ -56,7 +56,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // Add a new item item to the database
+    // ADD ITEM TO DATABASE
     public long addDb(ToDoItem toDoItem){
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_TODO_ITEM_NAME,toDoItem.getName());
@@ -69,13 +69,14 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    // Permanently delete item from database
+
+    // DELETE ITEM FROM DATABASE
     public boolean deleteDb(String name){
         boolean result = false;
         String query = "Select * FROM " + TABLE_TODO + " where " + KEY_TODO_ITEM_NAME + " LIKE '" + name + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query,null);
+        Cursor cursor = db.rawQuery(query, null);
         ToDoItem toDoItem = new ToDoItem();
 
         if (cursor.moveToFirst()) {
@@ -91,7 +92,22 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // Get all items from database
+    // RETRIEVE SINGLE ITEM FROM DATABASE
+    public ToDoItem getToDoItem(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_TODO, new String[]{KEY_TODO_ID,
+                        KEY_TODO_ITEM_NAME, KEY_TODO_ITEM_PRIORITY, KEY_TODO_ITEM_DUEBY}, KEY_TODO_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        ToDoItem item = new ToDoItem(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1), cursor.getString(2), cursor.getString(3));
+        return item;
+    }
+
+
+    // GET ALL ITEMS FROM DATABASE
     public List<ToDoItem> getAllItems() {
         List<ToDoItem> itemList = new ArrayList<ToDoItem>();
         String selectQuery = "SELECT * FROM " + TABLE_TODO;
@@ -105,7 +121,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
                 toDoItem.setId(cursor.getInt(0));
                 toDoItem.setName(cursor.getString(1));
                 toDoItem.setPriority(cursor.getString(2));
-                toDoItem.setDuedate(cursor.getLong(3));
+                toDoItem.setDuedate(cursor.getString(3));
                 itemList.add(toDoItem);
             } while (cursor.moveToNext());
         }
@@ -116,7 +132,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    // Allows you to update item currently in database
+    // UPDATE ITEM IN DATABASE
     public void updateItem(ToDoItem toDoItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         String strFilter = KEY_TODO_ID+"=" + ((Long)toDoItem.getId()).intValue();
@@ -127,7 +143,6 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(KEY_TODO_ITEM_DUEBY,toDoItem.getDuedate());
 
         int ret = db.update(TABLE_TODO, contentValues, strFilter, null);
-        Log.d("2222", ret + "");
         db.close();
     }
 
