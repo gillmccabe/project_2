@@ -18,7 +18,7 @@ import java.util.Date;
 public class EditItemActivity extends AppCompatActivity {
 
     EditText editText;
-    EditText etPriority;
+    EditText newPriority;
     DatePicker datePicker;
     TimePicker timePicker;
 
@@ -30,8 +30,8 @@ public class EditItemActivity extends AppCompatActivity {
 
 
     String mName="";
-    String mPri="High";
-    Long mDate= new Date().getTime();
+    String mPriority="High";
+    Long mDate = new Date().getTime();
     String mId = "";
     int position;
 
@@ -46,7 +46,7 @@ public class EditItemActivity extends AppCompatActivity {
         if(intent.containsKey(EXTRA_ID))
             mId = intent.getString(EXTRA_ID);
         if(intent.containsKey(EXTRA_PRI))
-            mPri = intent.getString(EXTRA_PRI);
+            mPriority = intent.getString(EXTRA_PRI);
         if(intent.containsKey(EXTRA_DUE_DATE))
             mDate = intent.getLong(EXTRA_DUE_DATE);
 
@@ -55,9 +55,9 @@ public class EditItemActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.etEditText);
         editText.setText(mName);
         editText.setSelection(mName.length());
-        etPriority = (EditText) findViewById(R.id.etPriority);
-        etPriority.setText(mPri);
-        etPriority.setSelection(mPri.length());
+        newPriority = (EditText) findViewById(R.id.etPriority);
+        newPriority.setText(mPriority);
+        newPriority.setSelection(mPriority.length());
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         Calendar dueDate = Calendar.getInstance();
         dueDate.setTimeInMillis(mDate);
@@ -79,7 +79,7 @@ public class EditItemActivity extends AppCompatActivity {
 
         Intent data = new Intent();
         data.putExtra(EditItemActivity.EXTRA_NAME, editText.getText().toString());
-        data.putExtra(EditItemActivity.EXTRA_PRI,etPriority.getText().toString());
+        data.putExtra(EditItemActivity.EXTRA_PRI,newPriority.getText().toString());
         Calendar dueDate = Calendar.getInstance();
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             dueDate.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());

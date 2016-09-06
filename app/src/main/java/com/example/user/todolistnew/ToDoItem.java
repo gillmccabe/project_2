@@ -11,6 +11,20 @@ public class ToDoItem {
     private long duedate;
 
 
+//////    EMPTY CONTRUSTOR
+    public ToDoItem() {
+
+    }
+//
+//
+//    CONSTRUCTOR
+    public ToDoItem(long id, String name, String priority, long duedate) {
+        this.id = id;
+        this.name = name;
+        this.priority = priority;
+        this.duedate = duedate;
+    }
+
 
     public long getId() {
         return id;

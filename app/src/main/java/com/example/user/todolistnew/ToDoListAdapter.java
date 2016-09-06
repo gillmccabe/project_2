@@ -39,7 +39,7 @@ public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
 
         if(row == null)
         {
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+            LayoutInflater inflater = ( (Activity) context ).getLayoutInflater();
             row = inflater.inflate(R.layout.todo_list_item, null, false);
 
             holder = new ToDoItemHolder();

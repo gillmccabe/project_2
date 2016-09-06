@@ -26,8 +26,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:hint="Priority [Low, Medium, High]"
-        android:layout_alignRight="@+id/datePicker"
-        android:layout_alignEnd="@+id/datePicker" />
+        android:layout_alignRight="@+id/datePicker" />
 
     <!--<Spinner-->
         <!--android:id="@+id/etPriority"-->
