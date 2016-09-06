@@ -11,15 +11,21 @@ public class ToDoItem {
     private String duedate;
 
 
-//////    EMPTY CONTRUCTOR
+    // Overload the constructors (create three different constructors that take different arguments)
     public ToDoItem() {
 
     }
-//
-//
-//    CONSTRUCTOR
+
+
     public ToDoItem(long id, String name, String priority, String duedate) {
         this.id = id;
+        this.name = name;
+        this.priority = priority;
+        this.duedate = duedate;
+    }
+
+
+    public ToDoItem(String name, String priority, String duedate){
         this.name = name;
         this.priority = priority;
         this.duedate = duedate;
