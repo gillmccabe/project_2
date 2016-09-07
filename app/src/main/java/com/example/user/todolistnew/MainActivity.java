@@ -156,21 +156,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    //  UPDATE ENTRY
-    protected void onActivityResult(Intent data) {
-//        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            int pos = data.getExtras().getInt("Item position");
-            ToDoItem item = new ToDoItem();
-            item.setName(data.getExtras().getString("Item Name"));
-            item.setId(Integer.parseInt(data.getExtras().getString("Item ID")));
-            item.setPriority(data.getExtras().getString("Item Priority"));
-            item.setDuedate(data.getExtras().getString("Item Due Date"));
-            todoItems.set(pos,item);
-            myToDoItemAdapter.notifyDataSetChanged();
-            updateItem(item);
-            writeItems(item);
-    }
+//
+//    //  UPDATE ENTRY
+//    protected void onActivityResult(Intent data) {
+////        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+//            int pos = data.getExtras().getInt("Item position");
+//            ToDoItem item = new ToDoItem();
+//            item.setName(data.getExtras().getString("Item Name"));
+//            item.setId(Integer.parseInt(data.getExtras().getString("Item ID")));
+//            item.setPriority(data.getExtras().getString("Item Priority"));
+//            item.setDuedate(data.getExtras().getString("Item Due Date"));
+//            todoItems.set(pos,item);
+//            myToDoItemAdapter.notifyDataSetChanged();
+//            updateItem(item);
+//            writeItems(item);
+//    }
 
 
 

@@ -64,6 +64,11 @@ public class ItemEditActivity extends AppCompatActivity {
         data.putExtra("Item Due Date",newDuedate.getText().toString());
         data.putExtra("Item position", position);
         data.putExtra("Item ID", mId);
+
+        ToDoItem toDoItem = new ToDoItem(Long.parseLong(mId), editText.getText().toString(), newPriority.getText().toString(), newDuedate.getText().toString());
+        SqlDatabaseHelper sql = new SqlDatabaseHelper(this);
+        sql.updateItem(toDoItem);
+
 //        setResult(RESULT_OK, data); // set result code and bundle data for response
 //        finish();
         startActivity(data);
