@@ -4,16 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:text="@string/add"
-        android:id="@+id/btnAddItem"
-        android:onClick="onAdd"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/lvItems"
-        android:layout_alignEnd="@+id/lvItems" />
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,16 +15,28 @@
         android:divider="@android:color/transparent"
         android:layout_above="@+id/btnAddItem" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/etEditText"
-        android:hint="@string/add_item"
-        android:layout_alignTop="@+id/btnAddItem"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/btnAddItem"
-        android:layout_toLeftOf="@+id/btnAddItem"
-        android:layout_toStartOf="@+id/btnAddItem" />
+    <!--<EditText-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/etEditText"-->
+        <!--android:hint="@string/add_item"-->
+        <!--android:layout_alignTop="@+id/btnAddItem"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignBottom="@+id/btnAddItem"-->
+        <!--android:layout_toLeftOf="@+id/btnAddItem"-->
+        <!--android:layout_toStartOf="@+id/btnAddItem" />-->
+
+    <Button
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:text="@string/add"
+        android:id="@+id/btnAddItem"
+        android:onClick="addItem"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/lvItems"
+        android:layout_alignEnd="@+id/lvItems" />
+
+    <!--android:onClick="onAdd"-->
 
 </RelativeLayout>

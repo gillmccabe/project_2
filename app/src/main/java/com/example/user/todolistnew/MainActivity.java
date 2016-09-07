@@ -1,10 +1,16 @@
 package com.example.user.todolistnew;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
     List<ToDoItem> todoItems;
     ToDoListAdapter myToDoItemAdapter;
     ListView lvItems;
-    EditText submitText;
+    EditText nameText;
     private final int REQUEST_CODE = 20;
     SqlDatabaseHelper sqlDatabase;
+    Context context = this;
+    EditText submitText;
 
 
     @Override
@@ -34,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         populateArrayItems();                                   // DEFINED AT BOTTOM OF THIS CLASS
         lvItems = (ListView) findViewById(R.id.lvItems);
         lvItems.setAdapter(myToDoItemAdapter);
-        submitText = (EditText) findViewById(R.id.etEditText);
+        submitText = (EditText) findViewById(R.id.name);
 
         //ON ITEM LONG CLICK WITHIN ON CREATE METHOD
         //THIS METHOD ALLOWS YOU TO LONG CLICK ON AN ITEM IN LIST AND DELETE IT FROM DB
@@ -63,13 +71,47 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("Item Name", selectedItem.getName());
                 intent.putExtra("Item Priority", selectedItem.getPriority());
                 intent.putExtra("Item Due Date", selectedItem.getDuedate());
-                intent.putExtra("Item ID", selectedItem.getId()+"");
+                intent.putExtra("Item ID", selectedItem.getId() + "");
                 intent.putExtra("Item position", position);
                 startActivity(intent);
             }
         });
+    }
 
-    }  // THIS BRACKET CLOSES ON CREATE METHOD
+
+        // CLICKING ADD BUTTON MAKES DIALOG APPEAR
+
+
+    public void addItem(View view) {
+//        final Dialog alert = new Dialog(context);
+//        setContentView(R.layout.add_dialog);
+//        setTitle("Add An Item To List");
+
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setTitle("Add Item To List");
+        alertDialogBuilder.setMessage("Are You Sure ?")
+                .setCancelable(false)
+                .setPositiveButton("Add Item", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+
+//        final EditText nameText = (EditText) alert.findViewById(R.id.name);
+//        Button addBtn = (Button) alert.findViewById(R.id.dialogButtonOK);
+//
+//        addBtn.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+                String itemName = nameText.getText().toString();
+                ToDoItem item = new ToDoItem();
+                item.setName(itemName);
+//
+                myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
+                submitText.setText(""); // SET TEXT ENTERED INTO EDITTEXT FIELD
+                writeItems(item); //SAVE INTO DATABASE
+//            }
+//        });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+    }
+
 
 
 
@@ -104,23 +146,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // HANDLES WHAT IS PRINTED TO THE LIST VIEW WHEN USER CLICKS ADD BUTTON
-    // IF NOTHING IS TYPED IN TEXTEDIT FIELD THEN USER RECEIVES TOAST ASKING THEM TO INPUT AN ITEM
-    public void onAdd(View view) {
-        String editText = submitText.getText().toString();
-        if (editText == null || editText.isEmpty()) {
-            Toast.makeText(this, "You must enter an item", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        ToDoItem item = new ToDoItem();
-        item.setName(editText);
-        item.setDuedate("-----------");
-
-
-        myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
-        submitText.setText(""); // SET TEXT ENTERED INTO EDITTEXT FIELD
-        writeItems(item); //SAVE INTO DATABASE
-    }
+//     HANDLES WHAT IS PRINTED TO THE LIST VIEW WHEN USER CLICKS ADD BUTTON
+//     IF NOTHING IS TYPED IN TEXTEDIT FIELD THEN USER RECEIVES TOAST ASKING THEM TO INPUT AN ITEM
+//    public void onAdd(View view) {
+//        String editText = submitText.getText().toString();
+//        if (editText == null || editText.isEmpty()) {
+//            Toast.makeText(this, "You must enter an item", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        ToDoItem item = new ToDoItem();
+//        item.setName(editText);
+//        item.setDuedate("-----------");
+//
+//
+//        myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
+//        submitText.setText(""); // SET TEXT ENTERED INTO EDITTEXT FIELD
+//        writeItems(item); //SAVE INTO DATABASE
+//    }
 
 
 //    //  UPDATE ENTRY
