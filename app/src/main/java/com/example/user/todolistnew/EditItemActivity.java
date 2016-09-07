@@ -29,7 +29,7 @@ public class EditItemActivity extends AppCompatActivity {
 
 
     String mName="";
-    String mPriority="High";
+    String mPriority="";
     String mDate = "";
     String mId = "";
     int position;
@@ -39,6 +39,7 @@ public class EditItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
+
         Bundle intent = getIntent().getExtras();
         if (intent.containsKey(EXTRA_NAME))
             mName = intent.getString(EXTRA_NAME);
@@ -48,9 +49,9 @@ public class EditItemActivity extends AppCompatActivity {
             mPriority = intent.getString(EXTRA_PRI);
         if (intent.containsKey(EXTRA_DUE_DATE))
             mDate = intent.getString(EXTRA_DUE_DATE);
-
         if (intent.containsKey(EXTRA_POSITION))
             position = intent.getInt(EXTRA_POSITION);
+
         editText = (EditText) findViewById(R.id.etEditText);
         editText.setText(mName);
         editText.setSelection(mName.length());
@@ -66,7 +67,7 @@ public class EditItemActivity extends AppCompatActivity {
     public void onSaveBtn(View view) {
 
         Intent data = new Intent();
-        data.putExtra(EditItemActivity.EXTRA_NAME, editText.getText().toString());
+        data.putExtra(EditItemActivity.EXTRA_NAME,editText.getText().toString());
         data.putExtra(EditItemActivity.EXTRA_PRI,newPriority.getText().toString());
         data.putExtra(EditItemActivity.EXTRA_DUE_DATE,newDuedate.getText().toString());
         data.putExtra(EditItemActivity.EXTRA_POSITION, position);

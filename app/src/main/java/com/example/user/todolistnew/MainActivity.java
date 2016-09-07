@@ -47,9 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 sqlDatabase.deleteDb(todoItems.get(position).getName());
                 todoItems.remove(position);
                 myToDoItemAdapter.notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(), "Item Deleted!", Toast.LENGTH_LONG).show();
                 return true;
             }
         });
+
+
 
         //ON ITEM CLICK WITHIN ON CREATE METHOD
         // THIS METHOD ALLOWS YOU TO SHORT CLICK ON ITEM IN TO DO LIST AND IT WILL SEND YOU TO EDIT ITEM
@@ -71,21 +74,6 @@ public class MainActivity extends AppCompatActivity {
     }  // THIS CLOSES ON CREATE METHOD
 
 
-    //     USES RESULT AND REQUEST CODES
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            int pos = data.getExtras().getInt(EditItemActivity.EXTRA_POSITION);
-            ToDoItem item = new ToDoItem();
-            item.setName(data.getExtras().getString(EditItemActivity.EXTRA_NAME));
-            item.setId(Integer.parseInt(data.getExtras().getString(EditItemActivity.EXTRA_ID)));
-            item.setPriority(data.getExtras().getString(EditItemActivity.EXTRA_PRI));
-            item.setDuedate(data.getExtras().getString(EditItemActivity.EXTRA_DUE_DATE));
-            todoItems.set(pos,item);
-            myToDoItemAdapter.notifyDataSetChanged();
-            updateItem(item);
-        }
-    }
 
     // CREATE NEW ENTRY IN DATABASE
     private void writeItems(ToDoItem temp){
@@ -118,22 +106,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // THIS METHOD HANDLES WHAT IS PRINTED TO THE LIST VIEW WHEN USER CLICKS ADD BUTTON
+    // HANDLES WHAT IS PRINTED TO THE LIST VIEW WHEN USER CLICKS ADD BUTTON
     // IF NOTHING IS TYPED IN TEXTEDIT FIELD THEN USER RECEIVES TOAST ASKING THEM TO INPUT AN ITEM
     public void onAdd(View view) {
         String editText = submitText.getText().toString();
-        if(editText == null || editText.isEmpty()){
+        if (editText == null || editText.isEmpty()) {
             Toast.makeText(this, "You must enter an item", Toast.LENGTH_SHORT).show();
             return;
         }
         ToDoItem item = new ToDoItem();
         item.setName(editText);
-
+        item.setDuedate("-----------");
 
 
         myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
         submitText.setText(""); // SET TEXT ENTERED INTO EDITTEXT FIELD
         writeItems(item); //SAVE INTO DATABASE
+    }
+
+
+    //  UPDATE ENTRY
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            int pos = data.getExtras().getInt(EditItemActivity.EXTRA_POSITION);
+            ToDoItem item = new ToDoItem();
+            item.setName(data.getExtras().getString(EditItemActivity.EXTRA_NAME));
+            item.setId(Integer.parseInt(data.getExtras().getString(EditItemActivity.EXTRA_ID)));
+            item.setPriority(data.getExtras().getString(EditItemActivity.EXTRA_PRI));
+            item.setDuedate(data.getExtras().getString(EditItemActivity.EXTRA_DUE_DATE));
+            todoItems.set(pos,item);
+            myToDoItemAdapter.notifyDataSetChanged();
+            updateItem(item);
+        }
     }
 
 
