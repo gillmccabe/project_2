@@ -6,39 +6,56 @@
     android:orientation="vertical"
     android:padding="10dp" >
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView1"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Item Name: "-->
-        <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Name: "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black"/>
 
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="[e.g. Walk Dog]"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"/>
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView2"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Item Priority: "-->
-        <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Priority: "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/priority"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+    <EditText
+        android:id="@+id/priority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="[High|Medium|Low]"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"/>
 
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/dialogButtonOk"/>-->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Be Completed By: "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black"/>
 
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/dialogButtonDelete"/>-->
+    <EditText
+        android:id="@+id/duedate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="[dd|mm|yyyy]"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorAccent"/>
 
 
 

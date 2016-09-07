@@ -91,16 +91,25 @@ public class MainActivity extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.add_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final EditText edt = (EditText) dialogView.findViewById(R.id.name);
+        final EditText edtName = (EditText) dialogView.findViewById(R.id.name);
+        final EditText edtPriority = (EditText) dialogView.findViewById(R.id.priority);
+        final EditText edtDueDate = (EditText) dialogView.findViewById(R.id.duedate);
 
         dialogBuilder.setTitle("Add Item To List");
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                String itemName = edt.getText().toString();
+                String itemName = edtName.getText().toString();
+                String itemPriority = edtPriority.getText().toString();
+                String itemDuedate = edtDueDate.getText().toString();
+
+
+                // CREATE NEW INSTANCE OF TODOITEM AND THEN SET VALUES USING OUTPUT OF DIALOG
                 ToDoItem item = new ToDoItem();
                 item.setName(itemName);
-                myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
-                writeItems(item); //SAVE INTO DATABASE
+                item.setPriority(itemPriority);
+                item.setDuedate(itemDuedate);
+                myToDoItemAdapter.add(item);        // ADD NEW TODOITEM TO ADAPTER
+                writeItems(item);                   //SAVE INTO DATABASE
                 }
             });
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
