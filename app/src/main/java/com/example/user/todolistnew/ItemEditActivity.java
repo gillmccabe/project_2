@@ -1,10 +1,13 @@
 package com.example.user.todolistnew;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.Calendar;
 
 /**
  * Created by user on 05/09/2016.
@@ -39,31 +42,34 @@ public class ItemEditActivity extends AppCompatActivity {
             mDate = intent.getString("Item Due Date");
         if (intent.containsKey("Item position"))
             position = intent.getInt("Item position");
+
+
+        editText = (EditText) findViewById(R.id.etEditText);
+        editText.setText(mName);
+        editText.setSelection(mName.length());
+        newPriority = (EditText) findViewById(R.id.etPriority);
+        newPriority.setText(mPriority);
+        newPriority.setSelection(mPriority.length());
+        newDuedate = (EditText) findViewById(R.id.dueDate);
+        newDuedate.setText(mDate);
+        newDuedate.setSelection(mDate.length());
     }
 
-//        editText = (EditText) findViewById(R.id.etEditText);
-//        editText.setText(mName);
-//        editText.setSelection(mName.length());
-//        newPriority = (EditText) findViewById(R.id.etPriority);
-//        newPriority.setText(mPriority);
-//        newPriority.setSelection(mPriority.length());
-//        editText = (EditText) findViewById(R.id.dueDate);
-//        editText.setText(mDate);
-//        editText.setSelection(mDate.length());
-//    }
-//
-//
-//    public void onSaveBtn(View view) {
-//
-//        Intent data = new Intent();
-//        data.putExtra("Item Name",editText.getText().toString());
-//        data.putExtra("Item Priority",newPriority.getText().toString());
-//        data.putExtra("Item Due Date",newDuedate.getText().toString());
-//        data.putExtra("Item position", position);
-//        data.putExtra("Item ID", mId);
+
+    public void onSaveBtn(View view) {
+
+        Intent data = new Intent(this, MainActivity.class);
+        data.putExtra("Item Name", editText.getText().toString());
+        data.putExtra("Item Priority",newPriority.getText().toString());
+        data.putExtra("Item Due Date",newDuedate.getText().toString());
+        data.putExtra("Item position", position);
+        data.putExtra("Item ID", mId);
 //        setResult(RESULT_OK, data); // set result code and bundle data for response
 //        finish();
-//    }
-//
-//
+        startActivity(data);
+    }
+
+
+
+
 }

@@ -17,6 +17,11 @@ public class ItemDetailsActivity extends AppCompatActivity {
     TextView priorityText;
     TextView duedateText;
     Button editButton;
+    String mName;
+    String mPriority;
+    String mDueDate;
+    String mID;
+    String mPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +34,18 @@ public class ItemDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String mName = intent.getStringExtra("Item Name");
-        String mPriority = intent.getStringExtra("Item Priority");
-        String mDueDate = intent.getStringExtra("Item Due Date");
+        mName = intent.getStringExtra("Item Name");
+        mPriority = intent.getStringExtra("Item Priority");
+        mDueDate = intent.getStringExtra("Item Due Date");
+        mID = intent.getStringExtra("Item ID");
+        mPosition = intent.getStringExtra("Item position");
+
 
             nameText.setText(mName);
             priorityText.setText(mPriority);
             duedateText.setText(mDueDate);
+
+
 
         editButton = (Button) findViewById(R.id.viewdetailseditbutton);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +54,11 @@ public class ItemDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(ItemDetailsActivity.this, ItemEditActivity.class);
-
+                intent.putExtra("Item Name", mName);
+                intent.putExtra("Item Priority", mPriority);
+                intent.putExtra("Item Due Date", mDueDate);
+                intent.putExtra("Item ID", mID);
+                intent.putExtra("Item position", mPosition);
                 startActivity(intent);
             }
         });

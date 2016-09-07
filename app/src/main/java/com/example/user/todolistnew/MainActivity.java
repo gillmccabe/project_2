@@ -158,9 +158,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     //  UPDATE ENTRY
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+    protected void onActivityResult(Intent data) {
+//        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             int pos = data.getExtras().getInt("Item position");
             ToDoItem item = new ToDoItem();
             item.setName(data.getExtras().getString("Item Name"));
@@ -170,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
             todoItems.set(pos,item);
             myToDoItemAdapter.notifyDataSetChanged();
             updateItem(item);
-        }
+            writeItems(item);
     }
 
 
