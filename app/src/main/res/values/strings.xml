@@ -11,6 +11,7 @@
     <string name="dueby">Due By:</string>
     <string name="button">Add Item</string>
     <string name="priority_prompt">Choose a priority</string>
+    <string name="itemdetailsbanner">Item Details</string>
 
     <string-array name="priority_arrays">
         <item>---</item>

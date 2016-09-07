@@ -1,6 +1,5 @@
 package com.example.user.todolistnew;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
                 sqlDatabase.deleteDb(todoItems.get(position).getName());
                 todoItems.remove(position);
                 myToDoItemAdapter.notifyDataSetChanged();
@@ -53,25 +52,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         //ON ITEM CLICK WITHIN ON CREATE METHOD
-        // THIS METHOD ALLOWS YOU TO SHORT CLICK ON ITEM IN TO DO LIST AND IT WILL SEND YOU TO EDIT ITEM
+        // THIS METHOD ALLOWS YOU TO SHORT CLICK ON ITEM AND GO TO ITEM DETAILS
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent secondActivity = new Intent(MainActivity.this, EditItemActivity.class);
-                ToDoItem item = todoItems.get(position);
-                secondActivity.putExtra(EditItemActivity.EXTRA_NAME, item.getName());
-                secondActivity.putExtra(EditItemActivity.EXTRA_PRI, item.getPriority());
-                secondActivity.putExtra(EditItemActivity.EXTRA_DUE_DATE, item.getDuedate());
-                secondActivity.putExtra(EditItemActivity.EXTRA_ID, item.getId() + "");
-                secondActivity.putExtra(EditItemActivity.EXTRA_POSITION, position);
-                startActivityForResult(secondActivity, REQUEST_CODE);
+                ToDoItem selectedItem = todoItems.get(position);
+
+                Intent intent = new Intent(MainActivity.this, ItemDetailsActivity.class);
+                intent.putExtra("Item Name", selectedItem.getName());
+                intent.putExtra("Item Priority", selectedItem.getPriority());
+                intent.putExtra("Item Due Date", selectedItem.getDuedate());
+                intent.putExtra("Item ID", selectedItem.getId()+"");
+                intent.putExtra("Item position", position);
+                startActivity(intent);
             }
         });
 
-    }  // THIS CLOSES ON CREATE METHOD
+    }  // THIS BRACKET CLOSES ON CREATE METHOD
 
 
 
@@ -125,21 +123,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //  UPDATE ENTRY
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            int pos = data.getExtras().getInt(EditItemActivity.EXTRA_POSITION);
-            ToDoItem item = new ToDoItem();
-            item.setName(data.getExtras().getString(EditItemActivity.EXTRA_NAME));
-            item.setId(Integer.parseInt(data.getExtras().getString(EditItemActivity.EXTRA_ID)));
-            item.setPriority(data.getExtras().getString(EditItemActivity.EXTRA_PRI));
-            item.setDuedate(data.getExtras().getString(EditItemActivity.EXTRA_DUE_DATE));
-            todoItems.set(pos,item);
-            myToDoItemAdapter.notifyDataSetChanged();
-            updateItem(item);
-        }
-    }
+//    //  UPDATE ENTRY
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+//            int pos = data.getExtras().getInt(ItemEditActivity.EXTRA_POSITION);
+//            ToDoItem item = new ToDoItem();
+//            item.setName(data.getExtras().getString(ItemEditActivity.EXTRA_NAME));
+//            item.setId(Integer.parseInt(data.getExtras().getString(ItemEditActivity.EXTRA_ID)));
+//            item.setPriority(data.getExtras().getString(ItemEditActivity.EXTRA_PRI));
+//            item.setDuedate(data.getExtras().getString(ItemEditActivity.EXTRA_DUE_DATE));
+//            todoItems.set(pos,item);
+//            myToDoItemAdapter.notifyDataSetChanged();
+//            updateItem(item);
+//        }
+//    }
 
 
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewdetailsnameheader"
+        android:text="Item Name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewdetailsname"
+        android:layout_below="@+id/viewdetailsnameheader"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewdetailspriorityheader"
+        android:text="Item Priority"
+        android:layout_below="@+id/viewdetailsname"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewdetailspriority"
+        android:layout_below="@+id/viewdetailspriorityheader"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewdetailsduedateheader"
+        android:text="To Be Completed By"
+        android:layout_below="@+id/viewdetailspriority"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewdetailsduedate"
+        android:layout_below="@+id/viewdetailsduedateheader"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewdetailseditbutton"
+        android:text="Edit Details"
+        android:layout_below="@+id/viewdetailsduedate"/>
+
+</RelativeLayout>
