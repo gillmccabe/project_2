@@ -57,6 +57,13 @@
         android:textColor="@android:color/black"
         android:textColorHint="@color/colorAccent"/>
 
+    <!--<Spinner-->
+        <!--android:id="@+id/spinner"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:prompt="@array/priority_arrays"/>-->
+
+
 
 
 </LinearLayout>

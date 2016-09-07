@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final EditText edtName = (EditText) dialogView.findViewById(R.id.name);
+//        Spinner spinimage = (Spinner) dialogView.findViewById(R.id.spinner);
         final EditText edtPriority = (EditText) dialogView.findViewById(R.id.priority);
         final EditText edtDueDate = (EditText) dialogView.findViewById(R.id.duedate);
 
@@ -110,8 +112,9 @@ public class MainActivity extends AppCompatActivity {
                 item.setDuedate(itemDuedate);
                 myToDoItemAdapter.add(item);        // ADD NEW TODOITEM TO ADAPTER
                 writeItems(item);                   //SAVE INTO DATABASE
-                }
-            });
+                Toast.makeText(getApplicationContext(), "Item Added!", Toast.LENGTH_LONG).show();
+            }
+        });
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
@@ -153,40 +156,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//     HANDLES WHAT IS PRINTED TO THE LIST VIEW WHEN USER CLICKS ADD BUTTON
-//     IF NOTHING IS TYPED IN TEXTEDIT FIELD THEN USER RECEIVES TOAST ASKING THEM TO INPUT AN ITEM
-//    public void onAdd(View view) {
-//        String editText = submitText.getText().toString();
-//        if (editText == null || editText.isEmpty()) {
-//            Toast.makeText(this, "You must enter an item", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        ToDoItem item = new ToDoItem();
-//        item.setName(editText);
-//        item.setDuedate("-----------");
-//
-//
-//        myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
-//        submitText.setText(""); // SET TEXT ENTERED INTO EDITTEXT FIELD
-//        writeItems(item); //SAVE INTO DATABASE
-//    }
 
-
-//    //  UPDATE ENTRY
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-//            int pos = data.getExtras().getInt(ItemEditActivity.EXTRA_POSITION);
-//            ToDoItem item = new ToDoItem();
-//            item.setName(data.getExtras().getString(ItemEditActivity.EXTRA_NAME));
-//            item.setId(Integer.parseInt(data.getExtras().getString(ItemEditActivity.EXTRA_ID)));
-//            item.setPriority(data.getExtras().getString(ItemEditActivity.EXTRA_PRI));
-//            item.setDuedate(data.getExtras().getString(ItemEditActivity.EXTRA_DUE_DATE));
-//            todoItems.set(pos,item);
-//            myToDoItemAdapter.notifyDataSetChanged();
-//            updateItem(item);
-//        }
-//    }
+    //  UPDATE ENTRY
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            int pos = data.getExtras().getInt("Item position");
+            ToDoItem item = new ToDoItem();
+            item.setName(data.getExtras().getString("Item Name"));
+            item.setId(Integer.parseInt(data.getExtras().getString("Item ID")));
+            item.setPriority(data.getExtras().getString("Item Priority"));
+            item.setDuedate(data.getExtras().getString("Item Due Date"));
+            todoItems.set(pos,item);
+            myToDoItemAdapter.notifyDataSetChanged();
+            updateItem(item);
+        }
+    }
 
 
 

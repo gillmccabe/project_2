@@ -15,12 +15,6 @@ public class ItemEditActivity extends AppCompatActivity {
     EditText newPriority;
     EditText newDuedate;
 
-    public static final String EXTRA_NAME = "name";
-    public static final String EXTRA_PRI = "priority";
-    public static final String EXTRA_DUE_DATE = "due_date";
-    public static final String EXTRA_POSITION = "position";
-    public static final String EXTRA_ID = "extra_id";
-
 
     String mName="";
     String mPriority="";
@@ -34,18 +28,19 @@ public class ItemEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
 
-//        Bundle intent = getIntent().getExtras();
-//        if (intent.containsKey(EXTRA_NAME))
-//            mName = intent.getString(EXTRA_NAME);
-//        if (intent.containsKey(EXTRA_ID))
-//            mId = intent.getString(EXTRA_ID);
-//        if (intent.containsKey(EXTRA_PRI))
-//            mPriority = intent.getString(EXTRA_PRI);
-//        if (intent.containsKey(EXTRA_DUE_DATE))
-//            mDate = intent.getString(EXTRA_DUE_DATE);
-//        if (intent.containsKey(EXTRA_POSITION))
-//            position = intent.getInt(EXTRA_POSITION);
-//
+        Bundle intent = getIntent().getExtras();
+        if (intent.containsKey("Item Name"))
+            mName = intent.getString("Item Name");
+        if (intent.containsKey("Item ID"))
+            mId = intent.getString("Item ID");
+        if (intent.containsKey("Item Priority"))
+            mPriority = intent.getString("Item Priority");
+        if (intent.containsKey("Item Due Date"))
+            mDate = intent.getString("Item Due Date");
+        if (intent.containsKey("Item position"))
+            position = intent.getInt("Item position");
+    }
+
 //        editText = (EditText) findViewById(R.id.etEditText);
 //        editText.setText(mName);
 //        editText.setSelection(mName.length());
@@ -61,14 +56,14 @@ public class ItemEditActivity extends AppCompatActivity {
 //    public void onSaveBtn(View view) {
 //
 //        Intent data = new Intent();
-//        data.putExtra(ItemEditActivity.EXTRA_NAME,editText.getText().toString());
-//        data.putExtra(ItemEditActivity.EXTRA_PRI,newPriority.getText().toString());
-//        data.putExtra(ItemEditActivity.EXTRA_DUE_DATE,newDuedate.getText().toString());
-//        data.putExtra(ItemEditActivity.EXTRA_POSITION, position);
-//        data.putExtra(ItemEditActivity.EXTRA_ID, mId);
+//        data.putExtra("Item Name",editText.getText().toString());
+//        data.putExtra("Item Priority",newPriority.getText().toString());
+//        data.putExtra("Item Due Date",newDuedate.getText().toString());
+//        data.putExtra("Item position", position);
+//        data.putExtra("Item ID", mId);
 //        setResult(RESULT_OK, data); // set result code and bundle data for response
 //        finish();
-    }
-
-
+//    }
+//
+//
 }
