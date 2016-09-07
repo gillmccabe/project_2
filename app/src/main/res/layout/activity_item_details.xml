@@ -1,52 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/viewdetailsnameheader"
-        android:text="Item Name" />
+        android:text="Item Name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="105dp"
         android:id="@+id/viewdetailsname"
-        android:layout_below="@+id/viewdetailsnameheader"/>
+        android:layout_below="@+id/viewdetailsnameheader"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="25sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/viewdetailspriorityheader"
         android:text="Item Priority"
-        android:layout_below="@+id/viewdetailsname"/>
+        android:layout_below="@+id/viewdetailsname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:paddingTop="25dp"
+        android:paddingLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="105dp"
         android:id="@+id/viewdetailspriority"
-        android:layout_below="@+id/viewdetailspriorityheader"/>
+        android:layout_below="@+id/viewdetailspriorityheader"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="25sp"
+        android:textColor="@android:color/black"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/viewdetailsduedateheader"
         android:text="To Be Completed By"
-        android:layout_below="@+id/viewdetailspriority"/>
+        android:layout_below="@+id/viewdetailspriority"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:paddingTop="25dp"
+        android:paddingLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="105dp"
         android:id="@+id/viewdetailsduedate"
-        android:layout_below="@+id/viewdetailsduedateheader"/>
+        android:layout_below="@+id/viewdetailsduedateheader"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:textSize="25sp"
+        android:paddingTop="10dp"
+        android:textColor="@android:color/black"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
         android:id="@+id/viewdetailseditbutton"
         android:text="Edit Details"
-        android:layout_below="@+id/viewdetailsduedate"/>
+        android:textStyle="bold"
+        android:layout_below="@+id/viewdetailsduedate"
+        android:background="@drawable/myhomebutton"/>
 
-</RelativeLayout>
+
+</LinearLayout>

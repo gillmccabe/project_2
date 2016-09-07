@@ -43,12 +43,12 @@ public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
         }
 
         TextView itemName = (TextView)convertView.findViewById(R.id.itemName);
-        TextView itemPriority = (TextView)convertView.findViewById(R.id.itemPriority);
-        TextView itemDueDate = (TextView)convertView.findViewById(R.id.itemDueDate);
+//        TextView itemPriority = (TextView)convertView.findViewById(R.id.itemPriority);
+//        TextView itemDueDate = (TextView)convertView.findViewById(R.id.itemDueDate);
 
         itemName.setText(item.getName());
-        itemPriority.setText(item.getPriority());
-        itemDueDate.setText(item.getDuedate());
+//        itemPriority.setText(item.getPriority());
+//        itemDueDate.setText(item.getDuedate());
 
         return convertView;
     }

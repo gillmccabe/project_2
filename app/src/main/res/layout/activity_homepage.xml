@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="wrap_content">
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:windowActionBar="false">
 
     <ImageView
         android:id="@+id/homeImage"
@@ -12,8 +14,12 @@
     <Button android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go To Lists"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/homeImage"/>
+        android:text="What have I got to do today?"
+        android:layout_below="@+id/homeImage"
+        android:layout_marginTop="90dp"
+        android:padding="15dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/myhomebutton"/>
 
 </RelativeLayout>

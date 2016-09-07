@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     List<ToDoItem> todoItems;
     ToDoListAdapter myToDoItemAdapter;
     ListView lvItems;
-    EditText nameText;
     private final int REQUEST_CODE = 20;
     SqlDatabaseHelper sqlDatabase;
     Context context = this;
     EditText submitText;
+
 
 
     @Override
@@ -79,42 +80,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        // CLICKING ADD BUTTON MAKES DIALOG APPEAR
 
 
+
+
+    // CLICKING ADD BUTTON MAKES DIALOG APPEAR TO ENTER NEW ENTRY
     public void addItem(View view) {
-//        final Dialog alert = new Dialog(context);
-//        setContentView(R.layout.add_dialog);
-//        setTitle("Add An Item To List");
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.add_dialog, null);
+        dialogBuilder.setView(dialogView);
 
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-        alertDialogBuilder.setTitle("Add Item To List");
-        alertDialogBuilder.setMessage("Are You Sure ?");
-        alertDialogBuilder.setCancelable(true);
-        alertDialogBuilder.setPositiveButton("Add Item", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-//
-//        final EditText nameText = (EditText) alert.findViewById(R.id.name);
-//        Button addBtn = (Button) alert.findViewById(R.id.dialogButtonOK);
-//
-//        addBtn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                String itemName = nameText.getText().toString();
-//                ToDoItem item = new ToDoItem();
-//                item.setName(itemName);
-//
-//                myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
-//                submitText.setText(""); // SET TEXT ENTERED INTO EDITTEXT FIELD
-//                writeItems(item); //SAVE INTO DATABASE
-//            }
-//        });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+        final EditText edt = (EditText) dialogView.findViewById(R.id.name);
+
+        dialogBuilder.setTitle("Add Item To List");
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String itemName = edt.getText().toString();
+                ToDoItem item = new ToDoItem();
+                item.setName(itemName);
+                myToDoItemAdapter.add(item); // ADD NEW TODOITEM TO ADAPTER
+                writeItems(item); //SAVE INTO DATABASE
+                }
+            });
+        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
             }
         });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
     }
-
-
 
 
     // CREATE NEW ENTRY IN DATABASE
