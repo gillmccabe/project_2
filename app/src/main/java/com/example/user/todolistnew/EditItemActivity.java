@@ -19,8 +19,7 @@ public class EditItemActivity extends AppCompatActivity {
 
     EditText editText;
     EditText newPriority;
-    DatePicker datePicker;
-    TimePicker timePicker;
+    EditText newDuedate;
 
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_PRI = "priority";
@@ -31,7 +30,7 @@ public class EditItemActivity extends AppCompatActivity {
 
     String mName="";
     String mPriority="High";
-    Long mDate = new Date().getTime();
+    String mDate = "";
     String mId = "";
     int position;
 
@@ -41,16 +40,16 @@ public class EditItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
         Bundle intent = getIntent().getExtras();
-        if(intent.containsKey(EXTRA_NAME))
+        if (intent.containsKey(EXTRA_NAME))
             mName = intent.getString(EXTRA_NAME);
-        if(intent.containsKey(EXTRA_ID))
+        if (intent.containsKey(EXTRA_ID))
             mId = intent.getString(EXTRA_ID);
-        if(intent.containsKey(EXTRA_PRI))
+        if (intent.containsKey(EXTRA_PRI))
             mPriority = intent.getString(EXTRA_PRI);
-        if(intent.containsKey(EXTRA_DUE_DATE))
-            mDate = intent.getLong(EXTRA_DUE_DATE);
+        if (intent.containsKey(EXTRA_DUE_DATE))
+            mDate = intent.getString(EXTRA_DUE_DATE);
 
-        if(intent.containsKey(EXTRA_POSITION))
+        if (intent.containsKey(EXTRA_POSITION))
             position = intent.getInt(EXTRA_POSITION);
         editText = (EditText) findViewById(R.id.etEditText);
         editText.setText(mName);
@@ -58,35 +57,18 @@ public class EditItemActivity extends AppCompatActivity {
         newPriority = (EditText) findViewById(R.id.etPriority);
         newPriority.setText(mPriority);
         newPriority.setSelection(mPriority.length());
-        datePicker = (DatePicker) findViewById(R.id.datePicker);
-        Calendar dueDate = Calendar.getInstance();
-        dueDate.setTimeInMillis(mDate);
-        datePicker.updateDate(dueDate.get(Calendar.YEAR), dueDate.get(Calendar.MONTH), dueDate.get(Calendar.DAY_OF_MONTH));
-
-        timePicker = (TimePicker) findViewById(R.id.timePicker);
-
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            timePicker.setCurrentHour(dueDate.get(Calendar.HOUR_OF_DAY));
-            timePicker.setCurrentMinute(dueDate.get(Calendar.MINUTE));
-        } else {
-            timePicker.setHour(dueDate.get(Calendar.HOUR_OF_DAY));
-            timePicker.setMinute(dueDate.get(Calendar.MINUTE));
-        }
-
+        editText = (EditText) findViewById(R.id.dueDate);
+        editText.setText(mDate);
+        editText.setSelection(mDate.length());
     }
+
 
     public void onSaveBtn(View view) {
 
         Intent data = new Intent();
         data.putExtra(EditItemActivity.EXTRA_NAME, editText.getText().toString());
         data.putExtra(EditItemActivity.EXTRA_PRI,newPriority.getText().toString());
-        Calendar dueDate = Calendar.getInstance();
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            dueDate.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
-        } else{
-            dueDate.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getHour(), timePicker.getMinute());
-        }
-        data.putExtra(EditItemActivity.EXTRA_DUE_DATE, dueDate.getTimeInMillis());
+        data.putExtra(EditItemActivity.EXTRA_DUE_DATE,newDuedate.getText().toString());
         data.putExtra(EditItemActivity.EXTRA_POSITION, position);
         data.putExtra(EditItemActivity.EXTRA_ID, mId);
         setResult(RESULT_OK, data); // set result code and bundle data for response

@@ -18,9 +18,21 @@ import java.util.List;
  */
 public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
 
-    public ToDoListAdapter(Context context, ArrayList<ToDoItem> tasks){
-        super(context, 0, tasks);
+    Context context;
+
+    @Override
+    public int getCount() {
+        return items.size();
     }
+
+    List<ToDoItem> items;
+
+    public ToDoListAdapter(Context context, int resource, int textViewResourceId, List<ToDoItem> objects) {
+        super(context, resource, textViewResourceId, objects);
+        this.context = context;
+        this.items = objects;
+    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){

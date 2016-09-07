@@ -25,8 +25,27 @@
         android:layout_below="@+id/etEditText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Priority [Low, Medium, High]"
-        android:layout_alignRight="@+id/datePicker" />
+        android:hint="Choose Priority: [Low, Medium, High]" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dueDate"
+        android:layout_below="@+id/etPriority"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Enter Date: [dd/mm/yyyy]" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:id="@+id/btnSave"
+        android:onClick="onSaveBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 
     <!--<Spinner-->
         <!--android:id="@+id/etPriority"-->
@@ -40,31 +59,31 @@
         <!--android:layout_alignParentLeft="true"-->
         <!--android:layout_alignParentStart="true"/>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
-        android:id="@+id/btnSave"
-        android:onClick="onSaveBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/save"-->
+        <!--android:id="@+id/btnSave"-->
+        <!--android:onClick="onSaveBtn"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
 
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:layout_below="@+id/etPriority"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:calendarViewShown="false"/>
+    <!--<DatePicker-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/datePicker"-->
+        <!--android:layout_below="@+id/etPriority"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:calendarViewShown="false"/>-->
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:layout_below="@+id/datePicker"
-        android:layout_above="@+id/btnSave" />
+    <!--<TimePicker-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/timePicker"-->
+        <!--android:layout_below="@+id/datePicker"-->
+        <!--android:layout_above="@+id/btnSave" />-->
 
 
 </RelativeLayout>
