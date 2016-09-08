@@ -23,30 +23,33 @@ public class ItemDetailsActivity extends AppCompatActivity {
     String mID;
     String mPosition;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
 
+
+//        SETS VARIABLES TO TEXT VIEW FIELDS THAT CAN BE CALLED IN NEXT METHOD
         nameText = (TextView) findViewById(R.id.viewdetailsname);
         priorityText = (TextView) findViewById(R.id.viewdetailspriority);
         duedateText = (TextView) findViewById(R.id.viewdetailsduedate);
 
-        Intent intent = getIntent();
 
+//        RECEIVES INTENT FROM MAIN ACTIVITY AND SETS TEXTVIEW FIELDS TO RELEVANT VALUE
+        Intent intent = getIntent();
         mName = intent.getStringExtra("Item Name");
         mPriority = intent.getStringExtra("Item Priority");
         mDueDate = intent.getStringExtra("Item Due Date");
         mID = intent.getStringExtra("Item ID");
         mPosition = intent.getStringExtra("Item position");
 
-
             nameText.setText(mName);
             priorityText.setText(mPriority);
             duedateText.setText(mDueDate);
 
 
-
+//      CREATED A NEW INTENT TO SEND TO EDIT ITEM - IS THIS NECESSARY?
         editButton = (Button) findViewById(R.id.viewdetailseditbutton);
         editButton.setOnClickListener(new View.OnClickListener() {
 

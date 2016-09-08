@@ -25,6 +25,7 @@ public class ItemEditActivity extends AppCompatActivity {
     int position;
 
 
+// CHECKS INTENT TO SEE IF VALUES ALREADY EXIST AND IF SO PASSES THEM INTO EDITTEXT FIELD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
