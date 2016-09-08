@@ -11,7 +11,7 @@ public class ToDoItem {
     private String duedate;
 
 
-    // Overload the constructors (create three different constructors that take different arguments)
+    // OVERLOAD THE CONTRUCTORS TO ALLOW FOR TESTING
     public ToDoItem() {
 
     }
@@ -25,17 +25,11 @@ public class ToDoItem {
     }
 
 
-    public ToDoItem(String name, String priority, String duedate){
-        this.name = name;
-        this.priority = priority;
-        this.duedate = duedate;
-    }
-
+    //GETTER AND SETTER METHODS FOR EMPTY CONSTRUCTOR
 
     public long getId() {
         return id;
     }
-
 
     public void setId(long id) {
         this.id = id;
@@ -64,6 +58,7 @@ public class ToDoItem {
     public void setDuedate(String duedate) {
         this.duedate = duedate;
     }
+
 
 
 }

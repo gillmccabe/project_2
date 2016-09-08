@@ -30,6 +30,7 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TODO_ITEM_DUEBY = "dueby";
 
 
+
     public SqlDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -62,7 +63,6 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(KEY_TODO_ITEM_NAME,toDoItem.getName());
         contentValues.put(KEY_TODO_ITEM_PRIORITY,toDoItem.getPriority());
         contentValues.put(KEY_TODO_ITEM_DUEBY,toDoItem.getDuedate());
-
         SQLiteDatabase db = this.getWritableDatabase();
         long id = db.insert(TABLE_TODO,null,contentValues);
         db.close();
@@ -145,6 +145,25 @@ public class SqlDatabaseHelper extends SQLiteOpenHelper {
         int ret = db.update(TABLE_TODO, contentValues, strFilter, null);
         db.close();
     }
+
+
+    // UPDATE ITEM TO "DONE" IN DATABASE
+//    public void updateItemToDone(int id){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String strFilter = KEY_TODO_ID+"=" + id;
+//        ContentValues contentValues = new ContentValues();
+//
+//        ToDoItem item = getToDoItem(id);
+//        if (item.getDone() == "true") {
+//            contentValues.put(KEY_TODO_ITEM_DONE, "true");
+//        }
+//        else {
+//            contentValues.put(KEY_TODO_ITEM_DONE, "false");
+//        }
+//
+//        db.update(TABLE_TODO, contentValues, strFilter, null);
+//        db.close();
+//    }
 
 }
 

@@ -20,17 +20,11 @@ import java.util.List;
 /**
  * Created by user on 05/09/2016.
  */
+
+//CUSTOM ADAPTER ALLOWS YOU TO CUSTOMIZE YOUR LISTVIEW TO INCLUDE MULTIPLE ITEMS IN ROW
 public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
 
     Context context;
-    SharedPreferences.Editor editor;
-    private static ArrayList<ToDoItem> searchArrayList;
-
-    @Override
-    public int getCount() {
-        return items.size();
-    }
-
     List<ToDoItem> items;
 
     public ToDoListAdapter(Context context, int resource, int textViewResourceId, List<ToDoItem> objects) {
@@ -40,6 +34,7 @@ public class ToDoListAdapter extends ArrayAdapter<ToDoItem> {
     }
 
 
+    // GETS THE APPROPRIATE VIEW FOR LISTVIEW ROW FROM LAYOUT (ITEM.XML)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 

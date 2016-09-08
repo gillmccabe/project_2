@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -17,8 +18,6 @@ public class ItemEditActivity extends AppCompatActivity {
     EditText editText;
     EditText newPriority;
     EditText newDuedate;
-
-
     String mName="";
     String mPriority="";
     String mDate = "";
@@ -56,9 +55,10 @@ public class ItemEditActivity extends AppCompatActivity {
     }
 
 
+//    SAVES ANY EDITED VALUES TO A NEW TODOITEM AND PASSES IT INTO THE UPDATEITEM METHOD TO UPDATE IN DB
     public void onSaveBtn(View view) {
 
-        Intent data = new Intent(this, MainActivity.class);
+        Intent data = new Intent(this, ItemDetailsActivity.class);
         data.putExtra("Item Name", editText.getText().toString());
         data.putExtra("Item Priority",newPriority.getText().toString());
         data.putExtra("Item Due Date",newDuedate.getText().toString());
@@ -68,13 +68,9 @@ public class ItemEditActivity extends AppCompatActivity {
         ToDoItem toDoItem = new ToDoItem(Long.parseLong(mId), editText.getText().toString(), newPriority.getText().toString(), newDuedate.getText().toString());
         SqlDatabaseHelper sql = new SqlDatabaseHelper(this);
         sql.updateItem(toDoItem);
-
-//        setResult(RESULT_OK, data); // set result code and bundle data for response
-//        finish();
         startActivity(data);
+        Toast.makeText(getApplicationContext(), "Item Updated!", Toast.LENGTH_LONG).show();
     }
-
-
 
 
 }

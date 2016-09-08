@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     List<ToDoItem> todoItems;
     ToDoListAdapter myToDoItemAdapter;
     ListView lvItems;
-    private final int REQUEST_CODE = 20;
     SqlDatabaseHelper sqlDatabase;
     Context context = this;
     EditText submitText;
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         lvItems = (ListView) findViewById(R.id.lvItems);
         lvItems.setAdapter(myToDoItemAdapter);
         submitText = (EditText) findViewById(R.id.name);
+
 
         //ON ITEM LONG CLICK WITHIN ON CREATE METHOD
         //THIS METHOD ALLOWS YOU TO LONG CLICK ON AN ITEM IN LIST AND DELETE IT FROM DB
@@ -78,10 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-
-
+    }       // THIS BRACKET CLOSES ON CREATE METHOD
 
 
 
@@ -93,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final EditText edtName = (EditText) dialogView.findViewById(R.id.name);
-//        Spinner spinimage = (Spinner) dialogView.findViewById(R.id.spinner);
         final EditText edtPriority = (EditText) dialogView.findViewById(R.id.priority);
         final EditText edtDueDate = (EditText) dialogView.findViewById(R.id.duedate);
 
@@ -132,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         myToDoItemAdapter.notifyDataSetChanged();
     }
 
+
     // READ ALL ITEMS IN DATABASE
     private void readItems(){
         if(sqlDatabase.getAllItems() != null){
@@ -140,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             todoItems.addAll(dbItems);
         }
     }
+
 
     // CALLS DATABASE UPDATE METHOD TO ALLOW YOU TO UPDATE ITEM
     private void updateItem(ToDoItem item) {
@@ -154,24 +152,6 @@ public class MainActivity extends AppCompatActivity {
         readItems();
         myToDoItemAdapter = new ToDoListAdapter(this, R.layout.item, R.id.itemName, todoItems);
     }
-
-
-//
-//    //  UPDATE ENTRY
-//    protected void onActivityResult(Intent data) {
-////        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-//            int pos = data.getExtras().getInt("Item position");
-//            ToDoItem item = new ToDoItem();
-//            item.setName(data.getExtras().getString("Item Name"));
-//            item.setId(Integer.parseInt(data.getExtras().getString("Item ID")));
-//            item.setPriority(data.getExtras().getString("Item Priority"));
-//            item.setDuedate(data.getExtras().getString("Item Due Date"));
-//            todoItems.set(pos,item);
-//            myToDoItemAdapter.notifyDataSetChanged();
-//            updateItem(item);
-//            writeItems(item);
-//    }
-
 
 
 
