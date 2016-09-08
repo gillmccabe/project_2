@@ -12,6 +12,9 @@
     <string name="button">Add Item</string>
     <string name="priority_prompt">Choose a priority</string>
     <string name="itemdetailsbanner">Item Details</string>
+    <string name="say_hello">gotohome</string>
+    <string name="gotohome">Home</string>
+    <string name="gototlists">Lists</string>
 
     <string-array name="priority_arrays">
         <item>---</item>
