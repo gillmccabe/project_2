@@ -4,7 +4,7 @@ A mobile app built in Android Studio. Data persisted using SQLite.
 
 
 ## MVP
-Create a mobile app that should allow users to:
+Create a mobile app that allows users to:
 - add items to their to do list
 - mark items as complete
 
