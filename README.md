@@ -1,6 +1,6 @@
 # ToDoAble (To Do List)
 
-A mobile app built in Android Studio. Data persisted using SQLite.
+A mobile app built in Android Studio. Allows you to add, edit and delete items from list. Data persisted using SQLite.
 
 
 ## MVP
